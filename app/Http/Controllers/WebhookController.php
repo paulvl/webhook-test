@@ -11,8 +11,18 @@ class WebhookController extends Controller
 {
     public function getWebhook()
     {
+        $basePath = base_path();
         \Log::info("se llego a webook");
-        return 1;
+
+        $cmd1 = 'git -C ' . $basePath . ' add -A';
+        $cmd2 = 'git -C ' . $basePath . ' commit -m "changes 3"';
+        $cmd3 = 'git -C ' . $basePath . ' push -u origin master';
+
+        exec($cmd1);
+        exec($cmd2);
+        exec($cmd3);
+        
+        return 1121;
     }
     
     public function postWebhook(Request $request)
@@ -23,6 +33,9 @@ class WebhookController extends Controller
         foreach ($keys as $key) {
             \Log::info($key . ': '. $all[$key]);            
         }
+        $basePath = base_path();
+        $cmd = 'git -C ' . $basePath . ' pull';
+        exec($cmd);
         return 'correcto';
     }
 }
