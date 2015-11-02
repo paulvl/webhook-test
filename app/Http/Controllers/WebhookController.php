@@ -42,20 +42,23 @@ class WebhookController extends Controller
     {
         $all = $request->all();
         $keys = array_keys($all);
+       
+        $basePath = base_path();
+
+        $cmd1 = 'git -C ' . $basePath . ' pull';
+
         \Log::info("valores que llegaron con el hook!!!");
+        \Log::info("path: $basePath");
+        \Log::info("comando $cmd1");
         \Log::info("salida del pull!!!");
 
-        
+
 
         /*
         foreach ($keys as $key) {
             \Log::info($key . ': '. $all[$key]);            
         }
         */
-       
-        $basePath = base_path();
-
-        $cmd1 = 'git -C ' . $basePath . ' pull';
 
         exec($cmd1, $output);
 
