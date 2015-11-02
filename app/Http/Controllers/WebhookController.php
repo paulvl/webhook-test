@@ -61,8 +61,6 @@ class WebhookController extends Controller
 
         \Log::info($output);
 
-        
-
         return 'correcto';
 
     }
