@@ -45,7 +45,7 @@ class WebhookController extends Controller
        
         $basePath = base_path();
 
-        $cmd1 = 'git -C ' . $basePath . ' pull';
+        $cmd1 = 'sudo git -C ' . $basePath . ' pull';
 
         \Log::info("valores que llegaron con el hook!!!");
         \Log::info("path: $basePath");
