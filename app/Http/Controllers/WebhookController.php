@@ -52,8 +52,6 @@ class WebhookController extends Controller
         \Log::info("comando $cmd1");
         \Log::info("salida del pull!!!");
 
-
-
         /*
         foreach ($keys as $key) {
             \Log::info($key . ': '. $all[$key]);            
