@@ -24,20 +24,42 @@ class WebhookController extends Controller
 
         return 1121;
     }
+
+    public function getWebhook2()
+    {
+        $basePath = base_path();
+
+        $cmd1 = 'git -C ' . $basePath . ' pull';
+
+        exec($cmd1, $output);
+
+        \Log::info($output);
+
+        return 1121;
+    }
     
     public function postWebhook(Request $request)
     {
         $all = $request->all();
         $keys = array_keys($all);
-        \Log::info("valores que llegaron con el hook!!!");  
+        \Log::info("valores que llegaron con el hook!!!");
+        \Log::info("salida del pull!!!");
+
+        /*
         foreach ($keys as $key) {
             \Log::info($key . ': '. $all[$key]);            
         }
+        */
+       
         $basePath = base_path();
-        $cmd = 'git -C ' . $basePath . ' pull';
-        exec($cmd);
+
+        $cmd1 = 'git -C ' . $basePath . ' pull';
+
+        exec($cmd1, $output);
+
+        \Log::info($output);
 
         return 'correcto';
-        
+
     }
 }
