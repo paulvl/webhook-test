@@ -21,7 +21,7 @@ class WebhookController extends Controller
         exec($cmd1);
         exec($cmd2);
         exec($cmd3);
-        
+
         return 1121;
     }
     
@@ -36,6 +36,8 @@ class WebhookController extends Controller
         $basePath = base_path();
         $cmd = 'git -C ' . $basePath . ' pull';
         exec($cmd);
+
         return 'correcto';
+        
     }
 }
