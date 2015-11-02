@@ -23,6 +23,6 @@ class WebhookController extends Controller
         foreach ($keys as $key) {
             \Log::info($key . ': '. $all[$key]);            
         }
-        return 1;
+        return 'correcto';
     }
 }
