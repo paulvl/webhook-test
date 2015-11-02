@@ -15,12 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/webhook', function () {
-	\Log::info("se llego a webook");
-    return 1;
-});
-
-Route::post('/webhook', function () {
-	\Log::info("se llego a webook");
-    return 1;
-});
+Route::controller('/','WebhookController');
