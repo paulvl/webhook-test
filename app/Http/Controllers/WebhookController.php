@@ -58,7 +58,10 @@ class WebhookController extends Controller
         }
         */
         exec($cmd1, $output);
+
         \Log::info($output);
+
+        
 
         return 'correcto';
 
