@@ -17,7 +17,12 @@ class WebhookController extends Controller
     
     public function postWebhook(Request $request)
     {
-        \Log::info("se llego a webook");
+        $all = $request->all();
+        $keys = array_keys($all);
+        \Log::info("valores que llegaron con el hook!!!");  
+        foreach ($keys as $key) {
+            \Log::info($key . ': '. $all[$key]);            
+        }
         return 1;
     }
 }
