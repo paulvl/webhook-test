@@ -57,7 +57,7 @@ class WebhookController extends Controller
         $commands = array(
             'echo $PWD',
             'whoami',
-            $cmx . ' pull',
+            $cmx . ' pull origin master',
             $cmx . ' status',
             $cmx . ' submodule sync',
             $cmx . ' submodule update',
