@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class WebhookController extends Controller
 {
+    public function getIndex()
+    {
+        return "200 OK";
+    }
+
     public function getWebhook()
     {
         $basePath = base_path();
