@@ -50,21 +50,29 @@ class WebhookController extends Controller
        
         $basePath = base_path();
 
-        $cmd1 = 'git -C ' . $basePath . ' pull';
+        $cmx = 'git -C ' . $basePath;
 
-        \Log::info("valores que llegaron con el hook!!!");
-        \Log::info("path: $basePath");
-        \Log::info("comando $cmd1");
-        \Log::info("salida del pull!!!");
+        \Log::info("======");
+
+        $commands = array(
+            'echo $PWD',
+            'whoami',
+            $cmx . ' pull',
+            $cmx . ' status',
+            $cmx . ' submodule sync',
+            $cmx . ' submodule update',
+            $cmx . ' submodule status',
+        );
 
         /*
         foreach ($keys as $key) {
             \Log::info($key . ': '. $all[$key]);            
         }
         */
-        exec($cmd1, $output);
-
-        \Log::info($output);
+       foreach($commands AS $command){
+            $output = shell_exec($command);
+            \Log::info($output);
+        }
 
         return 'correcto';
 
