@@ -9,9 +9,9 @@ use App\Http\Controllers\Controller;
 
 class WebhookController extends Controller
 {
-    public function getIndex()
+    public function getIndex(Request $request)
     {
-        return "yes!xxxx! 123ssss123123 OK";
+        return "OK";
     }
 
     public function getWebhook()
@@ -71,6 +71,19 @@ class WebhookController extends Controller
         */
         $output = shell_exec($command);
         \Log::info($output);
+
+
+        $headers = getallheaders();
+
+        if( isset($headers['X-Hub-Signature']) )
+        {
+            $signature = $headers['X-Hub-Signature'];
+        }else
+        {
+            $signature = 'no signature';
+        }
+
+        \Log::info($signature);
 
         return 'correcto';
 
