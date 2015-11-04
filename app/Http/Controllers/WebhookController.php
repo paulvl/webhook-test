@@ -50,7 +50,7 @@ class WebhookController extends Controller
        
         $basePath = base_path();
 
-        $cmx = 'sudo -Hu www-data git -C ' . $basePath;
+        $cmx = 'git -C ' . $basePath;
 
         \Log::info("======");
 
