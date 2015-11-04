@@ -11,7 +11,7 @@ class WebhookController extends Controller
 {
     public function getIndex()
     {
-        return "yes!xxxx! 200 OK";
+        return "yes!xxxx! 123123123 OK";
     }
 
     public function getWebhook()
@@ -50,10 +50,10 @@ class WebhookController extends Controller
        
         $basePath = base_path();
 
-        $cmx = 'git -C ' . $basePath;
+        $command = 'git -C ' . $basePath . ' pull origin master';
 
         \Log::info("======");
-
+        /*
         $commands = array(
             'echo $PWD',
             'whoami',
@@ -62,17 +62,15 @@ class WebhookController extends Controller
             $cmx . ' submodule sync',
             $cmx . ' submodule update',
             $cmx . ' submodule status',
-        );
+        );*/
 
         /*
         foreach ($keys as $key) {
             \Log::info($key . ': '. $all[$key]);            
         }
         */
-       foreach($commands AS $command){
-            $output = shell_exec($command);
-            \Log::info($output);
-        }
+        $output = shell_exec($command);
+        \Log::info($output);
 
         return 'correcto';
 
