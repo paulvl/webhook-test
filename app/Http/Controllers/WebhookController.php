@@ -11,7 +11,7 @@ class WebhookController extends Controller
 {
     public function getIndex(Request $request)
     {
-        return "OK yess";
+        return "OK 123";
     }
 
     public function getWebhook()
@@ -45,6 +45,29 @@ class WebhookController extends Controller
     
     public function postWebhook(Request $request)
     {
+
+        $secret = 'caca';
+ 
+        $headers = getallheaders();
+        $hubSignature = $headers['X-Hub-Signature'];
+         
+        // Split signature into algorithm and hash
+        list($algo, $hash) = explode('=', $hubSignature, 2);
+         
+        // Get payload
+        $payload = file_get_contents('php://input');
+         
+        // Calculate hash based on payload and the secret
+        $payloadHash = hash_hmac($algo, $payload, $secret);
+         
+        // Check if hashes are equivalent
+        if ($hash !== $payloadHash) {
+            // Kill the script or do something else here.
+            die('Bad secret');
+        }
+
+        \Log::info('hash: '. $hash);
+
         $all = $request->all();
         $keys = array_keys($all);
        
@@ -71,19 +94,6 @@ class WebhookController extends Controller
         */
         $output = shell_exec($command);
         \Log::info($output);
-
-
-        $headers = getallheaders();
-
-        if( isset($headers['X-Hub-Signature']) )
-        {
-            $signature = $headers['X-Hub-Signature'];
-        }else
-        {
-            $signature = 'no signature';
-        }
-
-        \Log::info($signature);
 
         return 'correcto';
 
