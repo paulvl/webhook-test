@@ -11,7 +11,7 @@ class WebhookController extends Controller
 {
     public function getIndex(Request $request)
     {
-        return "OK";
+        return "OK yess";
     }
 
     public function getWebhook()
